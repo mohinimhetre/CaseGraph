@@ -1,0 +1,28 @@
+<div class="app-shell">
+  <header class="app-banner">
+    <h1>Case graph</h1>
+  </header>
+
+  <main class="app-content">
+    @if (investigationStarted) {
+      <app-chat [tenant]="selectedTenant" />
+    } @else {
+      <section class="login-panel" aria-label="Choose a tenant">
+        <form class="tenant-form" (ngSubmit)="startInvestigation()">
+          <div class="tenant-field">
+            <label for="tenant">Tenant</label>
+            <select id="tenant" name="tenant" [(ngModel)]="selectedTenant" required>
+              <option value="" disabled>Select a tenant</option>
+              @for (tenant of tenants; track tenant) {
+                <option [value]="tenant">{{ tenant }}</option>
+              }
+            </select>
+          </div>
+          <button type="submit" [disabled]="!selectedTenant">Lets investigate</button>
+        </form>
+      </section>
+    }
+  </main>
+
+  <router-outlet />
+</div>

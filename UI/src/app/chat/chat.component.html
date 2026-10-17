@@ -1,0 +1,45 @@
+<div class="chat-wrapper">
+  <!-- Header Bar -->
+  <div class="chat-header">
+    <div class="status-indicator"></div>
+    <h2>Graph Agent Assistant</h2>
+    <span class="tenant-name">Tenant: {{ tenant }}</span>
+  </div>
+
+  <!-- Messages List Container -->
+  <div #scrollContainer class="message-area">
+    @if (messages().length === 0) {
+      <div class="empty-state">
+        <p>👋 Ask me anything! I will query FalkorDB to find the path to the answer.</p>
+      </div>
+    }
+
+    @for (msg of messages(); track $index) {
+      <div class="message-row" [ngClass]="{'user-row': msg.sender === 'User', 'agent-row': msg.sender !== 'User'}">
+        <div class="avatar">
+          {{ msg.sender === 'User' ? '👤' : '🤖' }}
+        </div>
+        <div class="message-bubble">
+          <div class="sender-name">{{ msg.sender }}</div>
+          <p class="message-text">{{ msg.text }}</p>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Footer Input Area -->
+  <div class="input-area">
+    <form (ngSubmit)="sendMessage()" class="input-form">
+      <input
+        type="text"
+        [(ngModel)]="userMessage"
+        name="messageInput"
+        placeholder="Type your question here..."
+        autocomplete="off"
+      />
+      <button type="submit" [disabled]="!userMessage().trim()">
+        <span>Send</span>
+      </button>
+    </form>
+  </div>
+</div>

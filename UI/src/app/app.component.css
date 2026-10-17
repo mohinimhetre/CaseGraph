@@ -1,0 +1,111 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f3f4f6;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.app-banner {
+  min-height: 64px;
+  display: flex;
+  align-items: center;
+  padding: 0 32px;
+  background: #172554;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgb(15 23 42 / 0.16);
+}
+
+.app-banner h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+}
+
+.app-content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.login-panel {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.tenant-form {
+  display: flex;
+  align-items: end;
+  gap: 12px;
+  width: min(100%, 560px);
+  padding: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgb(15 23 42 / 0.08);
+}
+
+.tenant-field {
+  flex: 1;
+  display: grid;
+  gap: 8px;
+}
+
+.tenant-field label {
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.tenant-field select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #111827;
+  font: inherit;
+}
+
+.tenant-field select:focus {
+  outline: 3px solid rgb(37 99 235 / 0.2);
+  border-color: #2563eb;
+}
+
+.tenant-form button {
+  min-height: 46px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.tenant-form button:hover:not(:disabled) {
+  background: #1d4ed8;
+}
+
+.tenant-form button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+@media (max-width: 520px) {
+  .app-banner {
+    padding: 0 20px;
+  }
+
+  .tenant-form {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px;
+  }
+}
