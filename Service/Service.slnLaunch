@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Graph-hacks-service\\Graph-Service.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "GraphMcpServer\\GraphMcpServer.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

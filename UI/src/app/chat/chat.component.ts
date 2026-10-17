@@ -14,11 +14,22 @@ export class ChatComponent {
   private chatService = inject(ChatService);
   @Input() tenant = '';
 
+  public readonly cases = ['case_001', 'case_002', 'case_003', 'case_004'];
+  public selectedCase = '';
+  public caseLocked = false;
+
   // Expose the messages signal from your service to the template
   public messages = this.chatService.messages;
   public userMessage = signal<string>('');
 
   @ViewChild('scrollContainer') private scrollContainer!: ElementRef;
+
+  public selectCase(event: Event) {
+    const caseId = (event.target as HTMLSelectElement).value;
+    if (!this.caseLocked && this.cases.includes(caseId)) {
+      this.selectedCase = caseId;
+    }
+  }
 
   constructor() {
     // Automatically scroll to the bottom whenever a new message arrives
@@ -31,10 +42,11 @@ export class ChatComponent {
 
   public sendMessage() {
     const text = this.userMessage().trim();
-    if (!text) return;
+    if (!text || !this.selectedCase) return;
 
     // Optional: Immediately show user's message locally before SignalR confirmation
-    this.chatService.sendMessage(text, this.tenant);
+    this.chatService.sendMessage(text, this.tenant, this.selectedCase);
+    this.caseLocked = true;
     this.userMessage.set(''); // Clear input
   }
 

@@ -10,7 +10,13 @@
   <div #scrollContainer class="message-area">
     @if (messages().length === 0) {
       <div class="empty-state">
-        <p>👋 Ask me anything! I will query FalkorDB to find the path to the answer.</p>
+        <p>
+          @if (selectedCase) {
+            👋 Ask me anything! I will query FalkorDB for {{ selectedCase }}.
+          } @else {
+            Select a case below before asking a question.
+          }
+        </p>
       </div>
     }
 
@@ -30,14 +36,31 @@
   <!-- Footer Input Area -->
   <div class="input-area">
     <form (ngSubmit)="sendMessage()" class="input-form">
+      <div class="case-selector">
+        <label for="case-select">Case</label>
+        <select
+          id="case-select"
+          name="case"
+          [value]="selectedCase"
+          (change)="selectCase($event)"
+          [disabled]="caseLocked"
+          required
+        >
+          <option value="" disabled>Select a case</option>
+          @for (caseId of cases; track caseId) {
+            <option [value]="caseId">{{ caseId }}</option>
+          }
+        </select>
+      </div>
       <input
         type="text"
         [(ngModel)]="userMessage"
         name="messageInput"
         placeholder="Type your question here..."
         autocomplete="off"
+        [disabled]="!selectedCase"
       />
-      <button type="submit" [disabled]="!userMessage().trim()">
+      <button type="submit" [disabled]="!selectedCase || !userMessage().trim()">
         <span>Send</span>
       </button>
     </form>

@@ -21,7 +21,7 @@ export class ChatService {
     });
   }
 
-  public sendMessage(message: string, tenant: string) {
-    this.hubConnection.invoke('SendMessage', 'User', message, tenant);
+  public sendMessage(message: string, tenant: string, caseId: string) {
+    this.hubConnection.invoke('SendMessage', 'User', message, tenant, caseId);
   }
 }

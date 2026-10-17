@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graph-Service", "Graph-hacks-service\Graph-Service.csproj", "{8F4B0903-064F-4A5C-A116-60439072FD6A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GraphMcpServer", "GraphMcpServer\GraphMcpServer.csproj", "{A19A52FC-08FA-602F-47C1-18609F8684BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\DataLayer.csproj", "{8206475D-A8DE-B22F-E7BA-FA27B1C6AF7C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8F4B0903-064F-4A5C-A116-60439072FD6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F4B0903-064F-4A5C-A116-60439072FD6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F4B0903-064F-4A5C-A116-60439072FD6A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A19A52FC-08FA-602F-47C1-18609F8684BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A19A52FC-08FA-602F-47C1-18609F8684BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A19A52FC-08FA-602F-47C1-18609F8684BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A19A52FC-08FA-602F-47C1-18609F8684BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8206475D-A8DE-B22F-E7BA-FA27B1C6AF7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8206475D-A8DE-B22F-E7BA-FA27B1C6AF7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8206475D-A8DE-B22F-E7BA-FA27B1C6AF7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8206475D-A8DE-B22F-E7BA-FA27B1C6AF7C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

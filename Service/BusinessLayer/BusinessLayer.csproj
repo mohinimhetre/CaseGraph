@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Agents.AI" Version="1.25.0" />
     <PackageReference Include="Microsoft.Extensions.AI.Ollama" Version="9.7.0-preview.1.25356.2" />
+    <PackageReference Include="ModelContextProtocol" Version="1.0.0" />
   </ItemGroup>
 
 </Project>
