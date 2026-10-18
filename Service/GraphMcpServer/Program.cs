@@ -7,6 +7,10 @@ builder.Services
     .WithHttpTransport()
     .WithToolsFromAssembly();
 
+var falkorDb = new NFalkorDB.FalkorDB("localhost:6379");
+
+builder.Services.AddTransient(_ => falkorDb);
+
 builder.Services.AddTransient<Repository>();
 
 var app = builder.Build();

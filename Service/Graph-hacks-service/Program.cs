@@ -6,12 +6,7 @@ using ModelContextProtocol.Client;
 var builder = WebApplication.CreateBuilder(args);
 
 // 1. MCP Configure the transport channel to talk to your MCP project
-// Using StdioClientTransport tells .NET to launch your MCP project as a background process
-//var mcpTransport = new StdioClientTransport(new StdioClientTransportOptions
-//{
-//    Command = "dotnet",
-//    Arguments = new[] { "run", "--project", "../GraphMcpCmd" }
-//});
+// Using HttpClientTransport tells .NET to launch your MCP project as a background process
 var mcpTransport = new HttpClientTransport(
                 new HttpClientTransportOptions
                 {
@@ -27,7 +22,7 @@ builder.Services.AddSingleton(mcpClient);
 // 1. Ollama Configure the transport channel to talk to your Ollama project
 var chatClient = new OllamaChatClient(
                 new Uri("http://localhost:11434"),
-                modelId: "llama3.2");
+                modelId: "llama3.1");
 
 // 2. Ollama Register the chat client into the DI container
 builder.Services.AddSingleton(chatClient);
@@ -49,8 +44,6 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
 
 builder.Services.AddSingleton<AgentOrchestrator>();
 
@@ -59,7 +52,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    
 }
 
 app.UseHttpsRedirection();
