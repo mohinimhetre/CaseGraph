@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  readonly tenants = ['shivajinagar_ps', 'kharadi_ps', "Test"];
+  readonly tenants = ['shivajinagar_ps', 'kharadi_ps'];
   selectedTenant = '';
   investigationStarted = false;
 

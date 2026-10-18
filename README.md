@@ -56,7 +56,23 @@ docker run -d --name casegraph-falkordb -p 6379:6379 falkordb/falkordb
 
 The application expects FalkorDB to be available at `localhost:6379`.
 
-### 2) Start Ollama and load the model
+### 2) Load the seed data in order
+
+The demo graph data is stored under [Service/DataLayer/Seed](./Service/DataLayer/Seed). Run the seed scripts in this sequence before using the app so the investigation graphs are populated correctly:
+
+Important: run each non-commented line separately in the FalkorDB browser (as described in each seed file), and keep the graph name aligned with the script target:
+- `shivajinagar_ps` for the Kalyani Nagar and Koregaon Park case graphs
+- `kharadi_ps` for the Shalini death case graph
+- `department` for the department hierarchy graph
+
+These match the graph names used by the app and should be created/selected in FalkorDB before executing the seed data.
+
+1. [Step1_seed_kalyani_nagar_case.cypher](./Service/DataLayer/Seed/Step1_seed_kalyani_nagar_case.cypher) — creates the Shivajinagar station graph and the initial Kalyani Nagar murder case
+2. [Step2_seed_police_department_hierarchy.cypher](./Service/DataLayer/Seed/Step2_seed_police_department_hierarchy.cypher) — creates the police department hierarchy graph
+3. [Step3_seed_shalini_death_case.cypher](./Service/DataLayer/Seed/Step3_seed_shalini_death_case.cypher) — creates the Kharadi station case for Shalini Mane
+4. [Step4_optional_seed_koregaon_park_hiest.cypher](./Service/DataLayer/Seed/Step4_optional_seed_koregaon_park_hiest.cypher) — optional case data for the Koregaon Park art heist
+
+### 3) Start Ollama and load the model
 
 Make sure Ollama is running locally, then pull the model used by the backend:
 
@@ -70,7 +86,7 @@ If needed, start the Ollama daemon:
 ollama serve
 ```
 
-### 3) Start the MCP graph server
+### 4) Start the MCP graph server
 
 ```bash
 cd Service/GraphMcpServer
@@ -80,7 +96,7 @@ dotnet run
 This project exposes graph tools on:
 - `https://localhost:52716`
 
-### 4) Start the backend service
+### 5) Start the backend service
 
 ```bash
 cd Service/Graph-hacks-service
@@ -93,7 +109,13 @@ This service listens on:
 
 The app is configured to connect to the frontend over CORS and the SignalR hub at `/chatHub`.
 
-### 5) Install and run the Angular UI
+### 6) Install and run the Angular UI
+
+Angular CLI: 19.2.27
+Node: 22.14.0
+Package Manager: npm 10.9.2
+OS: win32 x64
+Angular: 19.2.25
 
 ```bash
 cd UI
@@ -110,7 +132,7 @@ http://localhost:4200
 ## Usage
 
 1. Open the app in the browser.
-2. Select a tenant from the available list such as `shivajinagar_ps`, `kharadi_ps`, or `Test`.
+2. Select a tenant from the available list such as `shivajinagar_ps`, `kharadi_ps`.
 3. Start the investigation session.
 4. Ask questions in the chat such as:
    - "Find the relationship between X and Y"
